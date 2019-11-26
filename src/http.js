@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = {
   test: `http://localhost:9000/api/v1/`,
-  live: "http://api.linkr.page/api/v1/",
+  live: "https://api.linkr.page/api/v1/",
 };
 
 const HTTP = axios.create({
