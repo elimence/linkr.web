@@ -6,7 +6,7 @@ const api = {
 };
 
 const HTTP = axios.create({
-  baseURL: api.test,
+  baseURL: api.live,
   headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
