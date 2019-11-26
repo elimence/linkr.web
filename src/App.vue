@@ -19,7 +19,7 @@
       <v-spacer></v-spacer>
 
     <!-- <v-content align-right v-if="isLoggedIn()"> -->
-      <button align-right class="lk-btn-2" color="lighten-1 white--text" v-on:click="logout()">Logout</button>
+      <button v-if="isLoggedIn()" align-right class="lk-btn-2" color="lighten-1 white--text" v-on:click="logout()">Logout</button>
     <!-- </v-content> -->
     </v-app-bar>
 
@@ -42,7 +42,7 @@ export default {
       router.push('login');
     },
     isLoggedIn: function() {
-      console.log('isLoggedIn -->', localStorage.getItem('token') !== null);
+      // console.log('isLoggedIn -->', localStorage.getItem('token') !== null);
       return localStorage.getItem('token') !== null;
     }
   }

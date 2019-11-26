@@ -100,8 +100,8 @@ export default {
           localStorage.token = token;
           localStorage._id = _id;
 
-          http.defaults.headers["Authorization"] = token;
-          http.defaults.headers.common["Authorization"] = token;
+          // http.defaults.headers["Authorization"] = token;
+          // http.defaults.headers.common["Authorization"] = token;
 
           console.log({ status });
           router.push('home')
@@ -109,7 +109,6 @@ export default {
           const { response: { data: { error: { statusCode, data: [ displayableError ] } }}} = ex;
           console.log('error creating account', { statusCode, displayableError });
         });
-      
     }
   }
 }
