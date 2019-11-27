@@ -83,7 +83,7 @@ export default {
           // http.defaults.headers.common["Authorization"] = token;
 
           console.log({ status });
-          router.push('home')
+          router.push({ path: '/' });
         }).catch(ex => {
           const { response: { status, data: { message }}} = ex;
           console.log({ status, message })

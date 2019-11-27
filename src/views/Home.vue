@@ -1,13 +1,11 @@
 <template>
   <v-content>
     <v-container fluid class="show v-card">
-      <v-form>
-        <v-col>
-          <input type="text" color="teal lighten-1" class="lk-input" name="url" placeholder="Shorten your link" v-model="pageData.url">
-          
-          <button id="shorten_btn" color="teal lighten-1 white--text" v-on:click="shorten()">Shorten</button>
-        </v-col>
-      </v-form>
+      <v-col>
+        <input type="text" color="teal lighten-1" class="lk-input" name="url" placeholder="Shorten your link" v-model="pageData.url">
+        
+        <button id="shorten_btn" color="teal lighten-1 white--text" @click.prevent="shorten()">Shorten</button>
+      </v-col>
     </v-container>
 
     <v-container fluid class="show">
@@ -47,8 +45,8 @@ export default {
     baseUrl: null
   }),
   
-  created: function() {
-    console.log('created')
+  mounted: function() {
+    console.log(':mounted')
     if (localStorage.getItem('token') === null) {
       router.push('login');
     }
@@ -63,9 +61,7 @@ export default {
         this.links = links;
         this.baseUrl = baseUrl
 
-        console.log('base ==>', baseUrl);
-        console.log(JSON.stringify(res))
-        console.log(JSON.stringify(links))
+        console.log({ baseUrl, links })
       }).catch(ex => {
         const { response: { status, data: { message }}} = ex;
         console.log({ status, message })
@@ -80,16 +76,15 @@ export default {
       http
         .post('/links', this.pageData)
         .then(res => {
-          const { data: { link: { url, shortUrl } }} = res;
-          console.log({ url, shortUrl });
+          const { data: { link }} = res
+          console.log({ link })
           
-          router.replace({ name: 'home'});
+          this.links.unshift(link)
         }).catch(ex => {
           const { response: { status, data: { message }}} = ex;
           console.log({ status, message })
         })
       ;
-      
     }
   }
 }
